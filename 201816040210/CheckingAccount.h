@@ -1,21 +1,28 @@
-// Lab 1: Account.h
-// Definition of Account class.
-#ifndef ACCOUNT_H
-#define ACCOUNT_H
+// Lab 1: CheckingAccount.h
+// Definition of CheckingAccount class.
+#ifndef CHECKING_H
+#define CHECKING_H
 
-class Account
+#include "Account.h" // Account class definition
+
+class CheckingAccount : public Account
 {
 public:
-   Account( double ); // constructor initializes balance
-   virtual void credit( double );
-   /* Write a function prototype for virtual function credit */
-   virtual bool debit( double );
-   /* Write a function prototype for virtual function debit */
-   void setBalance( double ); // sets the account balance
-   double getBalance(); // return the account balance
+   // constructor initializes balance and transaction fee
+   CheckingAccount( double, double );
+
+    virtual void credit( double );
+   /* Write a function prototype for virtual function credit,
+      which will redefine the inherited credit function */
+    virtual bool debit( double );
+   /* Write a function prototype for virtual function debit,
+      which will redefine the inherited debit function */
 private:
-   double balance; // data member that stores the balance
-}; // end class Account
+   double transactionFee; // fee charged per transaction
+
+   // utility function to charge fee
+   void chargeFee();
+}; // end class CheckingAccount
 
 #endif
 

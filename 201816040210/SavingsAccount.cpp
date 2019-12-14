@@ -1,23 +1,19 @@
-// Lab 1: Account.h
-// Definition of Account class.
-#ifndef ACCOUNT_H
-#define ACCOUNT_H
+// Lab 1: SavingsAccount.cpp
+// Member-function definitions for class SavingsAccount.
+#include "SavingsAccount.h" // SavingsAccount class definition
 
-class Account
+// constructor initializes balance and interest rate
+SavingsAccount::SavingsAccount( double initialBalance, double rate )
+   : Account( initialBalance ) // initialize base class
 {
-public:
-   Account( double ); // constructor initializes balance
-   virtual void credit( double );
-   /* Write a function prototype for virtual function credit */
-   virtual bool debit( double );
-   /* Write a function prototype for virtual function debit */
-   void setBalance( double ); // sets the account balance
-   double getBalance(); // return the account balance
-private:
-   double balance; // data member that stores the balance
-}; // end class Account
+   interestRate = ( rate < 0.0 ) ? 0.0 : rate; // set interestRate
+} // end SavingsAccount constructor
 
-#endif
+// return the amount of interest earned
+double SavingsAccount::calculateInterest()
+{
+   return getBalance() * interestRate;
+} // end function calculateInterest
 
 
 /**************************************************************************
