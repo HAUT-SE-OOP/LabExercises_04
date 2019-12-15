@@ -46,7 +46,7 @@ int main()
       /* Call the credit function through Account pointer i */
 
       // downcast pointer
-      SavingsAccount *savingsAccountPtr = accounts[ i ];
+      SavingsAccount *savingsAccountPtr = dynamic_cast< SavingsAccount * >( accounts[ i ] );
          /* Write a dynamic_cast operation to to attempt to downcast
 		    Account pointer i to a SavingsAccount pointer */
 
