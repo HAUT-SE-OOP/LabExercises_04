@@ -27,7 +27,7 @@ int main()
    for ( size_t i = 0; i < accounts.size(); i++ )
    {
       cout << "Account " << i + 1 << " balance: $" 
-         << /* Call the getBalance function through Account pointer i */;
+         << /* Call the getBalance function through Account pointer i */accounts[i]->getBalance();
 
       double withdrawalAmount = 0.0;
       cout << "\nEnter an amount to withdraw from Account " << i + 1 
@@ -42,25 +42,26 @@ int main()
       /* Call the credit function through Account pointer i */
 
       // downcast pointer
-      SavingsAccount *savingsAccountPtr =
+      SavingsAccount *savingsAccountPtr = dynamic_cast<SavingsAccount *>(accounts[i]);
          /* Write a dynamic_cast operation to to attempt to downcast
 		    Account pointer i to a SavingsAccount pointer */
        savingsAccountPtr->calculateInterest();
 
       // if Account is a SavingsAccount, calculate and add interest
-      if ( /* Write a test to determine if savingsAccountPtr isn't 0 */ )
+      if ( savingsAccountPtr!=0 /* Write a test to determine if savingsAccountPtr isn't 0 */ )
       {
-         double interestEarned = /* Call member function calculateInterest
+         double interestEarned = savingsAccountPtr->calculateInterest(); /* Call member function calculateInterest
 								    through savingsAccountPtr */;
          cout << "Adding $" << interestEarned << " interest to Account "
             << i + 1 << " (a SavingsAccount)" << endl;
          /* Use the credit function to credit interestEarned to
 		    the SavingsAccount pointed to by savingsAccountPtr*/
+          savingsAccountPtr->credit(interestEarned);
       } // end if
       
       cout << "Updated Account " << i + 1 << " balance: $" 
          << /* Call the getBalance function through Account pointer i */
-		 << "\n\n";
+		 accounts[i]->getBalance() << "\n\n";
    } // end for
 } // end main
 
